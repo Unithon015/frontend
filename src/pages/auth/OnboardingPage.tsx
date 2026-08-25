@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { bbikFullLogo } from '@/shared/assets';
 
 const questions = [
   {
@@ -122,7 +121,6 @@ export default function OnboardingPage() {
         {/* Scrollable area */}
         <div className="flex flex-1 flex-col overflow-y-auto px-8 pt-10">
           <div className="mx-auto w-full max-w-md">
-
             {/* Header */}
             <h2 className="mb-1 text-[22px] font-bold text-gray-900">내 계정의 주 시청자 설정</h2>
             <p className="mb-5 text-sm text-gray-400">
