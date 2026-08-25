@@ -1,31 +1,40 @@
-import { Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import bbikFullLogo from '@/shared/assets/bbik-full-logo.svg';
 
-export default function Navbar() {
+interface NavbarProps {
+  isLoggedIn?: boolean;
+}
+
+export default function Navbar({ isLoggedIn = false }: NavbarProps) {
+  const user = JSON.parse(localStorage.getItem('user') ?? '{}') as { email?: string };
+  const initial = (user.email?.[0] ?? '').toUpperCase();
+
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-200 bg-white">
-      <div className="mx-auto flex h-14 max-w-6xl items-center gap-6 px-6">
-        <Link to="/" className="shrink-0 text-base font-semibold text-gray-900">
-          나락각 측정기
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="mx-auto flex h-18 max-w-screen-2xl items-center justify-between px-10">
+        <Link to="/">
+          <img src={bbikFullLogo} alt="삐빅" className="h-9" />
         </Link>
-
-        <div className="flex flex-1 items-center rounded-md border border-gray-300 bg-gray-50 px-3 py-1.5">
-          <Search className="mr-2 size-4 shrink-0 text-gray-400" />
-          <input
-            type="text"
-            placeholder="검색"
-            className="w-full bg-transparent text-sm text-gray-700 placeholder-gray-400 outline-none"
-          />
-        </div>
-
-        <nav className="flex shrink-0 items-center gap-5 text-sm text-gray-600">
-          <Link to="/help" className="hover:text-gray-900">
-            도움말
+        {isLoggedIn ? (
+          <div className="flex items-center gap-7">
+            <Link to="/dashboard" className="text-sm text-violet-600 hover:text-violet-800">
+              작업 목록
+            </Link>
+            <Link to="/settings" className="text-sm text-gray-500 hover:text-gray-900">
+              설정
+            </Link>
+            <div className="flex size-9 items-center justify-center rounded-full bg-violet-100 text-sm font-semibold text-violet-700">
+              {initial}
+            </div>
+          </div>
+        ) : (
+          <Link
+            to="/login"
+            className="rounded-xl border border-gray-300 px-6 py-2 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-50"
+          >
+            로그인
           </Link>
-          <Link to="/pro" className="hover:text-gray-900">
-            프로
-          </Link>
-        </nav>
+        )}
       </div>
     </header>
   );

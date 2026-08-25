@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "icons": "node scripts/generate-icons.mjs"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -27,6 +28,7 @@
     "axios": "^1.18.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^13.1.1",
     "lucide-react": "^1.23.0",
     "pretendard": "^1.3.9",
     "react": "^19.2.7",
