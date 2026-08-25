@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import RootLayout from './RootLayout';
 import ProtectedLayout from './ProtectedLayout';
 import HomePage from '@/pages/home/HomePage';
@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/onboarding',
-    element: <OnboardingPage />,
+    element: localStorage.getItem('token') ? <OnboardingPage /> : <Navigate to="/login" replace />,
   },
   {
     path: '/dashboard',

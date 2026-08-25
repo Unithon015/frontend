@@ -121,11 +121,7 @@ export default function OnboardingPage() {
       <div className="flex w-full flex-col bg-white lg:w-1/2">
         {/* Scrollable area */}
         <div className="flex flex-1 flex-col overflow-y-auto px-8 pt-10">
-          <div className="mx-auto w-full max-w-sm">
-            {/* Logo */}
-            <div className="mb-8 flex items-center gap-3">
-              <img src={bbikFullLogo} alt="삐빅" className="h-9" />
-            </div>
+          <div className="mx-auto w-full max-w-md">
 
             {/* Header */}
             <h2 className="mb-1 text-[22px] font-bold text-gray-900">내 계정의 주 시청자 설정</h2>
@@ -186,7 +182,10 @@ export default function OnboardingPage() {
         <div className="px-8 pt-4 pb-8">
           <div className="mx-auto w-full max-w-sm">
             <button
-              onClick={() => navigate('/')}
+              onClick={() => {
+                localStorage.setItem('onboarding_complete', 'true');
+                navigate('/dashboard');
+              }}
               className="w-full rounded-xl bg-[#7047E8] py-3.5 text-sm font-semibold text-white transition-colors hover:bg-violet-700"
             >
               설정 완료하고 시작하기

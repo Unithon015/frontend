@@ -49,7 +49,8 @@ export default function HomePage() {
       localStorage.setItem('user', JSON.stringify({ email }));
     }
 
-    navigate('/dashboard', { replace: true });
+    const isOnboarded = localStorage.getItem('onboarding_complete');
+    navigate(isOnboarded ? '/dashboard' : '/onboarding', { replace: true });
   }, [navigate]);
 
   return (
