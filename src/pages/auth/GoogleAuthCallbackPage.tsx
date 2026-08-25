@@ -26,7 +26,8 @@ export default function GoogleAuthCallbackPage() {
         localStorage.setItem('user', JSON.stringify({ name }));
       }
 
-      navigate('/dashboard', { replace: true });
+      const isOnboarded = localStorage.getItem('onboarding_complete');
+      navigate(isOnboarded ? '/dashboard' : '/onboarding', { replace: true });
     } else {
       navigate('/login', { replace: true });
     }
