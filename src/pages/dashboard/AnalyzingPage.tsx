@@ -22,7 +22,7 @@ export default function AnalyzingPage() {
     if (analysis?.status === 'FAILED') {
       navigate('/dashboard', { replace: true });
     }
-  }, [analysis, contentId, navigate]);
+  }, [analysis, contentId, content, navigate]);
 
   return (
     <PageLayout className="items-center py-30">

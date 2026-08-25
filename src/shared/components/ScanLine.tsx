@@ -20,13 +20,17 @@ export default function ScanLine({ variant = 'full', duration }: ScanLineProps) 
   const { defaultDuration, glow, line } = presets[variant];
 
   return (
+    // eslint-disable-next-line tailwindcss/no-custom-classname
     <div className="scan-wrapper">
+      {/* eslint-disable-next-line tailwindcss/no-custom-classname */}
       <div
         className="scan-beam"
         style={{ animationDuration: `${duration ?? defaultDuration}s` }}
       >
+        {/* eslint-disable tailwindcss/no-custom-classname */}
         <div className="scan-glow" style={{ background: glow }} />
         <div className="scan-line" style={{ background: line }} />
+        {/* eslint-enable tailwindcss/no-custom-classname */}
       </div>
     </div>
   );

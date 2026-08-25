@@ -194,7 +194,7 @@ export default function DashboardPage() {
           <button className="text-sm text-violet-600 hover:underline">전체 보기</button>
         </div>
 
-        <div className="divide-y divide-gray-200 rounded-2xl border border-gray-100 bg-white shadow-sm">
+        <div className="divide-y divide-gray-200 rounded-2xl border border-gray-200 bg-white shadow-sm">
           {isContentsLoading && (
             <p className="px-5 py-6 text-sm text-gray-400">불러오는 중...</p>
           )}
