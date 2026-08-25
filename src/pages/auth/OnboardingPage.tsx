@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const questions = [
@@ -46,9 +46,35 @@ const questions = [
   },
 ];
 
+function parseJwtPayload(token: string): Record<string, unknown> | null {
+  try {
+    const payload = token.split('.')[1];
+    return JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')));
+  } catch {
+    return null;
+  }
+}
+
 export default function OnboardingPage() {
   const navigate = useNavigate();
   const [selected, setSelected] = useState<string[][]>([[], [], []]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlToken = params.get('token') ?? params.get('access_token');
+
+    if (urlToken) {
+      localStorage.setItem('token', urlToken);
+      const payload = parseJwtPayload(urlToken);
+      if (payload) {
+        const name = (payload.name ?? payload.nickname ?? payload.email ?? '') as string;
+        localStorage.setItem('user', JSON.stringify({ name }));
+      }
+      window.history.replaceState({}, '', '/onboarding');
+    } else if (!localStorage.getItem('token')) {
+      navigate('/login', { replace: true });
+    }
+  }, [navigate]);
 
   const answeredCount = selected.filter((s) => s.length > 0).length;
 

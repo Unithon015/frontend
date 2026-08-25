@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import RootLayout from './RootLayout';
 import ProtectedLayout from './ProtectedLayout';
 import HomePage from '@/pages/home/HomePage';
@@ -7,7 +7,6 @@ import OnboardingPage from '@/pages/auth/OnboardingPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import AnalyzingPage from '@/pages/dashboard/AnalyzingPage';
 import ResultPage from '@/pages/dashboard/ResultPage';
-import GoogleAuthCallbackPage from '@/pages/auth/GoogleAuthCallbackPage';
 
 export const router = createBrowserRouter([
   {
@@ -20,12 +19,8 @@ export const router = createBrowserRouter([
     element: <LoginPage />,
   },
   {
-    path: '/auth/callback',
-    element: <GoogleAuthCallbackPage />,
-  },
-  {
     path: '/onboarding',
-    element: localStorage.getItem('token') ? <OnboardingPage /> : <Navigate to="/login" replace />,
+    element: <OnboardingPage />,
   },
   {
     path: '/dashboard',
