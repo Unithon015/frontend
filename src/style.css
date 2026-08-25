@@ -1,0 +1,150 @@
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+@import 'tailwindcss';
+
+@layer base {
+  html {
+    scrollbar-width: none;
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, sans-serif;
+  }
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.dashed-border-xl {
+  border: none;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23D1D5DB' stroke-width='1.5' stroke-dasharray='5%2c 5' stroke-linecap='round'/%3e%3c/svg%3e");
+}
+
+@keyframes bar-1 {
+  0% {
+    transform: scaleX(0);
+  }
+  12% {
+    transform: scaleX(1);
+  }
+  62% {
+    transform: scaleX(1);
+  }
+  75% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes bar-2 {
+  0% {
+    transform: scaleX(0);
+  }
+  9% {
+    transform: scaleX(0);
+  }
+  21% {
+    transform: scaleX(1);
+  }
+  62% {
+    transform: scaleX(1);
+  }
+  75% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes bar-3 {
+  0% {
+    transform: scaleX(0);
+  }
+  18% {
+    transform: scaleX(0);
+  }
+  30% {
+    transform: scaleX(1);
+  }
+  62% {
+    transform: scaleX(1);
+  }
+  75% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(0);
+  }
+}
+
+.bar-expand-1 {
+  transform-origin: left;
+  animation: bar-1 4s ease-in-out infinite;
+}
+.bar-expand-2 {
+  transform-origin: left;
+  animation: bar-2 4s ease-in-out infinite;
+}
+.bar-expand-3 {
+  transform-origin: left;
+  animation: bar-3 4s ease-in-out infinite;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #fbcfe8, #ede9fe, #c4b5fd, #f5d0fe, #fbcfe8);
+  background-size: 300% 300%;
+  animation: gradient-shift 10s ease infinite;
+}
+
+@keyframes scan-move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(1000px);
+  }
+}
+
+.scan-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.scan-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -70px;
+  height: 140px;
+  animation: scan-move linear infinite;
+}
+
+/* 선 위아래 번지는 glow 영역 */
+.scan-glow {
+  position: absolute;
+  inset: 0;
+  filter: blur(8px);
+}
+
+/* 가운데 얇은 핵심 선 */
+.scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  transform: translateY(-50%);
+}
